@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Cloud Resume Backend
+
+Resources:
+  VisitorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: python3.11
+      Handler: app.lambda_handler
+      CodeUri: .
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: VisitorTable
+      Environment:
+        Variables:
+          TABLE_NAME: VisitorTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /visitor
+            Method: GET

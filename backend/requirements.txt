@@ -1,0 +1,4 @@
+boto3
+pytest
+aws-sam-cli
+moto==3.1.16
